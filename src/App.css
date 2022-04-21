@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.header-container {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: 5px 5px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(76, 9, 121, 1) 30%,
+    rgb(6, 140, 167) 86%
+  );
+  height: 75px;
+  /* align-items: center; alignes all elements in div to middle */
+}
+
+.meme-face {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 200px;
+}
+
+.meme-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.react-course {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.main-container {
+  display: grid;
+}
+
+main {
+  padding: 36px;
+}
+.form {
+  display: grid;
+  grid-template: 40px 40px/ 1fr 1fr;
+  gap: 5px;
+}
+
+.form-input {
+  border: 1px solid rgb(92, 91, 91);
+  text-indent: 5px;
+}
+.form-button {
+  color: white;
+  font-size: 1.2rem;
+  grid-column: 1/-1;
+  border: 2px solid rgb(0, 0, 0);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(76, 9, 121, 1) 30%,
+    rgb(6, 140, 167) 86%
+  );
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.icon {
+  padding-left: 10px;
+}
+
+.meme {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  justify-self: center;
+  max-width: 70vw;
+}
+
+.meme-image {
+  margin-top: 2rem;
+  grid-column: 1/-1;
+  object-fit: cover;
+  position: relative;
+  border-radius: 10px;
+  max-width: 70vw;
+}
+
+.meme-text-top {
+  position: absolute;
+  top: 50px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px #000000;
+  max-width: 70%;
+}
+
+.meme-text-bottom {
+  position: absolute;
+  bottom: 50px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px #000000;
+  max-width: 70vw;
+}
