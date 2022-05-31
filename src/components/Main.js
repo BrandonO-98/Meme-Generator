@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faImage} from "@fortawesome/free-solid-svg-icons";
@@ -11,12 +12,6 @@ function Main() {
     randomImage: "",
   });
 
-  React.useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes")
-      .then((res) => res.json())
-      .then((data) => setAllMemes(data.data.memes));
-  }, []);
-
   function getMeme() {
     const randNumb = Math.floor(Math.random() * allMemes.length);
     const url = allMemes[randNumb].url;
@@ -27,6 +22,12 @@ function Main() {
     const {name, value} = event.target;
     setMeme((prevState) => ({...prevState, [name]: value}));
   }
+
+  React.useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => setAllMemes(data.data.memes));
+  }, []);
 
   return (
     <main>
@@ -54,7 +55,7 @@ function Main() {
           </button>
         </div>
         <div className='meme'>
-          <img src={meme.randomImage} className='meme-image' alt='meme' />
+          <img src={meme.randomImage} className='meme-image' alt='' />
           <h2 className='meme-text-top'>{meme.topText}</h2>
           <h2 className='meme-text-bottom'>{meme.bottomText}</h2>
         </div>
