@@ -94,6 +94,7 @@ main {
   max-width: 70vw;
 }
 
+/* add ability to change font and text location*/
 .meme-text-top {
   position: absolute;
   top: 50px;
