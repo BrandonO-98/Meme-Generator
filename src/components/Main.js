@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faImage} from "@fortawesome/free-solid-svg-icons";
@@ -12,22 +11,35 @@ function Main() {
     randomImage: "",
   });
 
-  function getMeme() {
-    const randNumb = Math.floor(Math.random() * allMemes.length);
-    const url = allMemes[randNumb].url;
-    setMeme((prevState) => ({...prevState, randomImage: url}));
+  // state is not updated immediately so we have to directly passs the data to 
+  // getMeme on render.
+  React.useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllMemes(data.data.memes)
+        getMeme(data.data.memes)
+      })
+  }, []);
+
+  function getMeme(memeData) {
+    console.log(memeData)
+    if (memeData) {
+      const randNumb = Math.floor(Math.random() * memeData.length);
+      const url = memeData[randNumb].url;
+      setMeme((prevState) => ({...prevState, randomImage: url}));
+    }
+    else {
+      const randNumb = Math.floor(Math.random() * allMemes.length);
+      const url = allMemes[randNumb].url;
+      setMeme((prevState) => ({...prevState, randomImage: url}));
+    }
   }
 
   function handleChange(event) {
     const {name, value} = event.target;
     setMeme((prevState) => ({...prevState, [name]: value}));
   }
-
-  React.useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes")
-      .then((res) => res.json())
-      .then((data) => setAllMemes(data.data.memes));
-  }, []);
 
   return (
     <main>
@@ -49,7 +61,7 @@ function Main() {
             name='bottomText'
             onChange={handleChange}
           />
-          <button className='form-button' onClick={getMeme}>
+          <button className='form-button' onClick={() => getMeme()}>
             Get a new meme image
             <FontAwesomeIcon icon={faImage} className='icon' />
           </button>
